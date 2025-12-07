@@ -1,5 +1,4 @@
 import { ArrowDown } from "lucide-react"
-import { motion } from "motion/react"
 import { Prism as SyntaxHighlighter } from "react-syntax-highlighter";
 import { vscDarkPlus } from "react-syntax-highlighter/dist/esm/styles/prism";
 import { Linkedin, Github } from "lucide-react";
@@ -36,7 +35,7 @@ export const HeroSection = () => {
                     </div>
                 </div>
 
-                <motion.div className="hero-image-container" initial={{ opacity: 0, x: 50 }} animate={{ opacity: 1, x: 0 }} transition={{ delay: 0.4, duration: 0.8 }}>
+                <div className="animate-fade-in-delay-4 hero-image-container">
                     <div className="code-display">
                         <SyntaxHighlighter language="typescript" customStyle={{ margin: 0, padding: "2rem", height: "100%", borderRadius: "10px", background: "rgba(30, 41, 59)", backdropFilter: "blur(10px)", marginBottom: 50 }} style={vscDarkPlus}>{`
 export class DialogBox implements AfterViewInit {
@@ -63,7 +62,7 @@ export class DialogBox implements AfterViewInit {
 }`}
                         </SyntaxHighlighter>
                     </div>
-                </motion.div>
+                </div>
             </div>
 
             <div className="absolute bottom-4 left-1/2 transform -translate-x-1/2 flex flex-col items-center animate-bounce">
