@@ -6,7 +6,7 @@ import { ThemeProvider } from "./components/ThemeContext"
 function App() {
   return (
     <ThemeProvider>
-      <BrowserRouter>
+      <BrowserRouter basename="/site-portfolio">
         <Routes>
           <Route index element={<Home />}></Route>
           <Route path="*" element={<NotFound />}></Route>
