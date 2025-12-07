@@ -24,3 +24,9 @@ Este projeto foi construído utilizando uma stack front-end moderna, aproveitand
 * **Vite:** Usado como ferramenta de build e servidor de desenvolvimento, oferecendo recarregamento rápido (HMR).
 * **HTML5**
 * **CSS3**
+
+### Estas são as bibliotecas cruciais utilizadas para estilização e funcionalidade:
+
+* **Tailwind CSS:** Framework de CSS utilitário para estilização rápida e responsiva.
+* **EmailJS:** Serviço utilizado para enviar e-mails diretamente do formulário de contato do cliente, sem a necessidade de um servidor back-end.
+* **React-Toastify:** Biblioteca para exibir notificações e personalizáveis na aplicação (toasts).
