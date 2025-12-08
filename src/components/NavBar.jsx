@@ -6,7 +6,6 @@ import { ThemeToggle } from "./ThemeToggle";
 
 const navItems = [
     { name: 'Home', href: '#hero' },
-    { name: 'Sobre', href: '#about' },
     { name: 'Habilidades', href: '#skills' },
     { name: 'Projetos', href: '#projects' },
     { name: 'Contato', href: '#contact' },
@@ -45,6 +44,16 @@ export const NavBar = () => {
         }
     }, []);
 
+    useEffect(() => {
+        document.body.style.overflow = isMenuOpen ? "hidden" : "auto";
+        document.body.style.height = isMenuOpen ? "100vh" : "";
+        document.body.style.position = isMenuOpen ? "fixed" : "";
+
+        return () => {
+            document.body.style.overflow = "auto"; 
+        };
+    }, [isMenuOpen]);
+
     return (
         <nav className={cn("fixed w-full z-40 transition-all duration-300", isScrolled ? "py-3 bg-background/80 backdrop-blur-md shadow-md" : "py-5 bg-transparent")}>
             <div className="container flex items-center justify-between">
@@ -70,7 +79,7 @@ export const NavBar = () => {
                 </button>
 
                 <div className={cn("fixed inset-0 bg-background/95 backdrop-blur-md z-40 flex flex-col items-center justify-center",
-                    "md:hidden transition-all duration-300", isMenuOpen ? "opacity-100 pointer-events-auto" : "opacity-0 pointer-events-none")}>
+                    "md:hidden transition-all duration-300", isMenuOpen ? "opacity-100 pointer-events-auto margin-0" : "opacity-0 pointer-events-none")}>
                     <div className="flex flex-col justify-center items-center space-y-8 text-xl">
                         {navItems.map((item, key) => (
                             <a key={key} href={item.href} className="text-foreground/80 hover:text-primary transition-colors duration-300 text-center justify-center" onClick={() => setIsMenuOpen(false)}>

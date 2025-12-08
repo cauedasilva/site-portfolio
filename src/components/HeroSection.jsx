@@ -1,9 +1,12 @@
 import { ArrowDown } from "lucide-react"
 import { Prism as SyntaxHighlighter } from "react-syntax-highlighter";
-import { vscDarkPlus } from "react-syntax-highlighter/dist/esm/styles/prism";
+import { dracula, materialLight } from "react-syntax-highlighter/dist/esm/styles/prism";
 import { Linkedin, Github } from "lucide-react";
+import { useTheme } from "./ThemeContext";
 
 export const HeroSection = () => {
+    const { isDarkMode } = useTheme();
+    
     return (
         <section id="hero" className="relative min-h-screen flex flex-col items-center justify-center px-4">
             <div className="container max-w-6xl mt-24 text-center z-10 flex flex-col md:flex-row items-center md:justify-between gap-8 mb-14">
@@ -11,7 +14,7 @@ export const HeroSection = () => {
                     <h1 className="text-4xl md:text-6xl sm:text-5xl tracking-tight font-bold">
                         <span className="opacity-0 animate-fade-in">Bem-vindo</span>
                         <span className="opacity-0 animate-fade-in-delay-1 ml-2">ao meu</span>
-                        <span className="text-primary opacity-0 animate-fade-in-delay-2 text-glow ml-2">portfólio</span>
+                        <span className="text-primary opacity-0 animate-fade-in-delay-2 ml-2">portfólio</span>
                     </h1>
 
                     <p className="text-lg md:text-xl text-muted-foreground max-2-2xl mx-auto opacity-0 animate-fade-in-delay-3">
@@ -36,9 +39,8 @@ export const HeroSection = () => {
                 </div>
 
                 <div className="hero-image-container">
-                    <div className="code-display shadow-lg">
-                        <SyntaxHighlighter language="typescript" customStyle={{ margin: 0, padding: "2rem", height: "100%", borderRadius: "10px", background: "rgba(30, 41, 59)", backdropFilter: "blur(10px)", marginBottom: 50 }} style={vscDarkPlus}>{`
-export class DialogBox implements AfterViewInit {
+                    <div className="code-display code-display-hover shadow-lg">
+                        <SyntaxHighlighter language="typescript" customStyle={{ margin: 0, padding: "2rem", height: "100%", borderRadius: "10px", backdropFilter: "blur(10px)", marginBottom: 50, fontSize: "0.85rem" }} style={isDarkMode ? materialLight : dracula}>{`export class DialogBox implements AfterViewInit {
     @ViewChild('modal') modalElement!: ElementRef;
     @Output() onClose = new EventEmitter<boolean>();
 

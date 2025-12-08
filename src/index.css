@@ -238,6 +238,10 @@
   }
 }
 
+@utility code-display-hover {
+  @apply transition-transform duration-300 hover:scale-[1.01] hover:shadow-lg;
+}
+
 @utility cta-secondary {
   position: relative;
   overflow: hidden;
