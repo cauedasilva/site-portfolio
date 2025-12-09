@@ -67,9 +67,8 @@ export const ContactSection = () => {
                         <div className="flex flex-col justify-center align-middle items-center">
                             <div className="space-y-6 justify-center">
                                 <div className="flex items-center justify-center space-x bg-card p-4 backdrop-blur-xs">
-                                    <div className="flex items-center gap-1 mr-1">
+                                    <div className="flex items-center gap-1 mr-2">
                                         <Mail className="h-6 w-6 text-primary" strokeWidth={1} />
-                                        <h4 className="font-light">E-mail:</h4>
                                     </div>
                                     <div>
                                         <a onClick={() => copyToClipboard("cauedasilva.slv@gmail.com")} className="cursor-pointer text-muted-foreground hover:text-primary font-light transition-colors duration-300">cauedasilva.slv@gmail.com</a>
@@ -77,9 +76,8 @@ export const ContactSection = () => {
                                 </div>
 
                                 <div className="flex items-center space-x bg-card p-4 backdrop-blur-xs">
-                                    <div className="p3 flex items-center justify-center gap-1 mr-1">
+                                    <div className="p3 flex items-center justify-center gap-1 mr-2">
                                         <MapPin className="h-6 w-6 text-primary" strokeWidth={1} />
-                                        <h4 className="font-light">Localização:</h4>
                                     </div>
                                     <div>
                                         <a className="text-muted-foreground font-light hover:text-primary transition-colors duration-300">Blumenau/Pomerode, SC</a>
