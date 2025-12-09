@@ -15,7 +15,7 @@ export const LineBackground = () => {
     }, []);
 
     const generateTrail = () => {
-        const numberOfTrails = Math.max(15, Math.floor((window.innerHeight * window.innerWidth) / 50000))
+        const numberOfTrails = Math.max(12, Math.floor((window.innerHeight * window.innerWidth) / 100000))
         const newTrails = []
 
         for (let i = 0; i < numberOfTrails; i++) {

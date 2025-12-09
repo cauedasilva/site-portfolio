@@ -1,23 +1,24 @@
-import { ArrowDown } from "lucide-react"
-import { Prism as SyntaxHighlighter } from "react-syntax-highlighter";
-import { dracula, materialLight } from "react-syntax-highlighter/dist/esm/styles/prism";
 import { Linkedin, Github } from "lucide-react";
-import { useTheme } from "./ThemeContext";
+import { LineArt } from "./LineArt";
 
 export const HeroSection = () => {
-    const { isDarkMode } = useTheme();
-    
     return (
-        <section id="hero" className="relative min-h-screen flex flex-col items-center justify-center px-4">
-            <div className="container max-w-6xl mt-24 text-center z-10 flex flex-col md:flex-row items-center md:justify-between gap-8 mb-14">
+        <section id="hero" className="relative min-h-screen flex items-center justify-center px-4">
+            <div className="container max-w-6xl mt-6 text-center z-10 flex flex-col md:flex-row items-center justify-center gap-8 mb-14">
+                <div className="hero-image-container">
+                    <div className="hero-display-hover shadow-lg">
+                        <LineArt />
+                    </div>
+                </div>
+
                 <div className="space-y-6">
-                    <h1 className="text-4xl md:text-6xl sm:text-5xl tracking-tight font-bold">
+                    <h1 className="text-4xl md:text-6xl sm:text-5xl tracking-tight font-light">
                         <span className="opacity-0 animate-fade-in">Bem-vindo</span>
                         <span className="opacity-0 animate-fade-in-delay-1 ml-2">ao meu</span>
                         <span className="text-primary opacity-0 animate-fade-in-delay-2 ml-2">portfólio</span>
                     </h1>
 
-                    <p className="text-lg md:text-xl text-muted-foreground max-2-2xl mx-auto opacity-0 animate-fade-in-delay-3">
+                    <p className="text-lg md:text-xl text-muted-foreground max-2-2xl mx-auto opacity-0 animate-fade-in-delay-3 font-light">
                         Estudante de desenvolvimento Web e graduando do curso de Sistemas de Informação na FURB, entusiasta por tecnologia e programação.
                     </p>
 
@@ -29,46 +30,14 @@ export const HeroSection = () => {
                         </div>
                         <div className="flex space-x-4 justify-center">
                             <a href="https://www.linkedin.com/in/cauedasilva/" target="_blank">
-                                <Linkedin />
+                                <Linkedin strokeWidth={1}/>
                             </a>
                             <a href="https://github.com/cauedasilva" target="_blank">
-                                <Github />
+                                <Github strokeWidth={1}/>
                             </a>
                         </div>
                     </div>
                 </div>
-
-                <div className="hero-image-container">
-                    <div className="code-display code-display-hover shadow-lg">
-                        <SyntaxHighlighter language="typescript" customStyle={{ margin: 0, padding: "2rem", height: "100%", borderRadius: "10px", backdropFilter: "blur(10px)", marginBottom: 50, fontSize: "0.85rem" }} style={isDarkMode ? materialLight : dracula}>{`export class DialogBox implements AfterViewInit {
-    @ViewChild('modal') modalElement!: ElementRef;
-    @Output() onClose = new EventEmitter<boolean>();
-
-    title = 'Confirmar';
-    message = 'Você tem certeza?';
-    private modalInstance: any;
-
-    open(title: string, message: string) {
-        this.title = title;
-        this.message = message;
-        this.modalInstance.show();
-    }
-    confirm() {
-        this.modalInstance.hide();
-        this.onClose.emit(true);
-    }
-    cancel() {
-        this.modalInstance.hide();
-        this.onClose.emit(false);
-    }
-}`}
-                        </SyntaxHighlighter>
-                    </div>
-                </div>
-            </div>
-
-            <div className="absolute bottom-4 left-1/2 transform -translate-x-1/2 flex flex-col items-center animate-bounce">
-                <ArrowDown className="h-8 w-8 text-primary" />
             </div>
         </section>
     )

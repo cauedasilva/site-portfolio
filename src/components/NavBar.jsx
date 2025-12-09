@@ -15,7 +15,7 @@ export const NavBar = () => {
   const [isMenuOpen, setIsMenuOpen] = useState(false);
   const [animateClass, setAnimateClass] = useState("animate-blink");
   const [text, setText] = useState("");
-  const fullText = "<Cauê /> Portfólio";
+  const fullText = "<Cauê /> portfólio";
 
   useEffect(() => {
     let index = 0;
@@ -44,7 +44,6 @@ export const NavBar = () => {
 
   return (
     <>
-      {/* NAVBAR */}
       <nav
         className={cn(
           "fixed w-full z-50 transition-all duration-300",
@@ -54,7 +53,7 @@ export const NavBar = () => {
         )}
       >
         <div className="container flex items-center justify-between">
-          <a className="text-xl font-bold text-primary flex items-center" href="#hero">
+          <a className="text-xl text-primary flex items-center" href="#hero">
             <span className="relative z-10 text-foreground flex items-center">
               <span>
                 {text}
@@ -68,7 +67,7 @@ export const NavBar = () => {
               <a
                 key={key}
                 href={item.href}
-                className="ml-6 text-foreground/80 hover:text-primary transition-colors duration-300"
+                className="ml-6 text-foreground hover:text-primary transition-colors duration-300"
               >
                 {item.name}
               </a>
@@ -81,7 +80,7 @@ export const NavBar = () => {
             className="md:hidden p-2 rounded-md text-foreground/80 z-50"
             aria-label={isMenuOpen ? "Fechar menu" : "Abrir menu"}
           >
-            {isMenuOpen ? <X size={24} /> : <Menu size={24} />}
+            {isMenuOpen ? <X size={24} strokeWidth={1} /> : <Menu size={24} strokeWidth={1} />}
           </button>
         </div>
       </nav>
@@ -99,7 +98,7 @@ export const NavBar = () => {
               key={key}
               href={item.href}
               onClick={() => setIsMenuOpen(false)}
-              className="text-foreground/80 hover:text-primary transition-colors duration-300 text-center"
+              className="text-foreground hover:text-primary font-light transition-colors duration-300 text-center"
             >
               {item.name}
             </a>

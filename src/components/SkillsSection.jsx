@@ -28,7 +28,7 @@ const categories = [
     { key: 'all', label: 'Todas' },
     { key: 'Frontend', label: 'Frontend' },
     { key: 'Backend', label: 'Backend' },
-    { key: 'Tools', label: 'Ferramentas' },
+    { key: 'Tools', label: 'Ferramentas' }
 ]
 
 export const SkillsSection = () => {
@@ -41,7 +41,7 @@ export const SkillsSection = () => {
     return (
         <section id="skills" className="py-20 px-4 bg-secondary/50 relative">
             <div className="container mx-auto max-w-5xl">
-                <h2 className="text-3xl md:text-4xl font-bold mb-4 text-center">
+                <h2 className="text-3xl md:text-4xl font-light mb-4 text-center">
                     Linguagens e <span className="text-primary"> habilidades </span>
                 </h2>
                 <p className="text-center text-muted-foreground mb-12 max-w-2xl mx-auto">Linguagens e ferramentas que já utilizei e continuo aprendendo.</p>
@@ -49,8 +49,8 @@ export const SkillsSection = () => {
                 <div className="flex flex-wrap justify-center gap-4 mb-12">
                     {categories.map((category) => (
                         <button key={category.key} onClick={() => setActiveCategory(category.key)} className={cn(
-                            "px-4 py-2 rounded-xl  border transition-colors duration-300 cursor-pointer",
-                            activeCategory === category.key ? "bg-primary text-primary-foreground border-primary cta-secondary" : "hover:bg-primary/10 button cta-secondary hover:cta-secondary-hover active:cta-secondary-active before:secondary-before hover:before:secondary-hover-before")}>
+                            "px-4 py-2 border transition-colors duration-300 cursor-pointer",
+                            activeCategory === category.key ? "bg-foreground text-background cta-secondary" : " button cta-secondary hover:cta-secondary-hover active:cta-secondary-active before:secondary-before hover:before:secondary-hover-before")}>
                             {category.label}
                         </button>
                     ))}
@@ -58,10 +58,10 @@ export const SkillsSection = () => {
 
                 <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6">
                     {filteredSkills.map((skill, index) => (
-                        <div key={index} className="gradient-border p-6 bg-card rounded-lg shadow-xs card-hover">
+                        <div key={index} className="gradient-border rounded-none p-6 bg-card shadow-xs card-hover">
                             <div className="flex items-center gap-3 justify-between">
                                 {skill.icon && (<skill.icon className="text-3xl text-primary" />)}
-                                <h3 className="font-semibold text-lg">{skill.name}</h3>
+                                <h3 className="font-light text-lg">{skill.name}</h3>
                             </div>
                         </div>
                     ))}

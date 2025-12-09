@@ -5,12 +5,11 @@ import { ToastContainer, toast, Slide } from 'react-toastify';
 import emailjs from 'emailjs-com';
 
 export const ContactSection = () => {
-    const notify = (alert) => alert ? toast.info("Mensagem enviada com sucesso!") : toast("Erro ao enviar a mensagem. Tente novamente mais tarde.", {
-        position: "bottom-right",
+    const notify = (alert) => alert ? toast("Mensagem enviada com sucesso!") : toast("Erro ao enviar a mensagem. Tente novamente mais tarde.", {
+        position: "top-right",
         autoClose: 3000,
         hideProgressBar: true,
-        closeOnClick: false,
-        pauseOnHover: true,
+        closeOnClick: true,
         draggable: false,
         transition: Slide
     });
@@ -20,6 +19,26 @@ export const ContactSection = () => {
         message: ''
     });
     const [isSubmitting, setIsSubmitting] = useState(false);
+
+    const copyToClipboard = (text) => {
+        navigator.clipboard.writeText(text)
+            .then(() => toast("Copiado para a área de transferência.", {
+                position: "top-right",
+                autoClose: 3000,
+                hideProgressBar: true,
+                closeOnClick: true,
+                draggable: false,
+                transition: Slide
+            }))
+            .catch(() => toast("Erro ao copiar.", {
+                position: "top-right",
+                autoClose: 3000,
+                hideProgressBar: true,
+                closeOnClick: true,
+                draggable: false,
+                transition: Slide
+            }));
+    };
 
     const handleSubmit = (e) => {
         e.preventDefault();
@@ -42,66 +61,65 @@ export const ContactSection = () => {
     return (
         <section id="contact" className="min-h-screen items-center px-6 py-24 bg-secondary">
             <div className="container mx-auto max-w-5xl">
-                <h2 className="text-3xl md:text-4xl font-bold mb-8 text-center">Entre em <span className="text-primary"> contato </span></h2>
-                <div className="grid grid-cols-1 md:grid-cols-2 gap-12">
+                <h2 className="text-3xl md:text-4xl font-light mb-8 text-center">Entre em <span className="text-primary"> contato </span></h2>
+                <div className="grid grid-cols-1 gap-12">
                     <div className="space-y-8">
                         <div className="flex flex-col justify-center align-middle items-center">
-                            <h3 className="text-2xl font-semibold mb-6 pb-2">Informações de contato</h3>
                             <div className="space-y-6 justify-center">
-                                <div className="flex flex-col items-center space-x bg-card p-4 rounded-lg backdrop-blur-xs">
-                                    <div className="p3 flex items-center justify-around gap-2">
-                                        <Mail className="h-6 w-6 text-primary" />
-                                        <h4 className="font-medium">Email</h4>
+                                <div className="flex items-center justify-center space-x bg-card p-4 backdrop-blur-xs">
+                                    <div className="flex items-center gap-1 mr-1">
+                                        <Mail className="h-6 w-6 text-primary" strokeWidth={1} />
+                                        <h4 className="font-light">E-mail:</h4>
                                     </div>
                                     <div>
-                                        <a href="mailto:cauedasilva.slv@gmail.com" className="text-muted-foreground hover:text-primary transition-colors duration-300">cauedasilva.slv@gmail.com</a>
+                                        <a onClick={() => copyToClipboard("cauedasilva.slv@gmail.com")} className="cursor-pointer text-muted-foreground hover:text-primary font-light transition-colors duration-300">cauedasilva.slv@gmail.com</a>
                                     </div>
                                 </div>
 
-                                <div className="flex flex-col items-center space-x bg-card p-4 rounded-lg backdrop-blur-xs">
-                                    <div className="p3 flex items-center justify-around gap-2">
-                                        <MapPin className="h-6 w-6 text-primary" />
-                                        <h4 className="font-medium">Localização</h4>
+                                <div className="flex items-center space-x bg-card p-4 backdrop-blur-xs">
+                                    <div className="p3 flex items-center justify-center gap-1 mr-1">
+                                        <MapPin className="h-6 w-6 text-primary" strokeWidth={1} />
+                                        <h4 className="font-light">Localização:</h4>
                                     </div>
                                     <div>
-                                        <a className="text-muted-foreground hover:text-primary transition-colors duration-300">Blumenau/Pomerode, SC</a>
+                                        <a className="text-muted-foreground font-light hover:text-primary transition-colors duration-300">Blumenau/Pomerode, SC</a>
                                     </div>
                                 </div>
+                                <ToastContainer className="toast-container" />
                             </div>
                         </div>
 
                         <div className="pt-0">
-                            <h3 className="text-2xl font-semibold mb-6">Redes Sociais</h3>
                             <div className="flex space-x-4 justify-center">
                                 <a href="https://www.linkedin.com/in/cauedasilva/" target="_blank">
-                                    <Linkedin />
+                                    <Linkedin strokeWidth={1} />
                                 </a>
                                 <a href="https://github.com/cauedasilva" target="_blank">
-                                    <Github />
+                                    <Github strokeWidth={1} />
                                 </a>
                             </div>
                         </div>
                     </div>
 
-                    <div className="bg-card p-8 rounded-lg shadow-xs backdrop-blur-xs">
-                        <h3 className="text-2xl font-semibold mb-6">Envie uma mensagem</h3>
+                    <div className="bg-card p-8 shadow-xs backdrop-blur-xs ">
+                        <h3 className="text-2xl font-light mb-6">Envie uma mensagem</h3>
                         <form className="space-y-6" onSubmit={handleSubmit}>
                             <div>
-                                <label htmlFor="name" className="block mb-2 text-sm font-medium">Nome</label>
-                                <input type="text" id="name" name="name" value={formData.name} required className="w-full px-4 py-3 rounded-md border border-input bg-background focus:outline-hidden focus:ring-2 focus:ring-primary" placeholder="Cauê da Silva" onChange={(e) => setFormData({ ...formData, name: e.target.value })} />
+                                <label htmlFor="name" className="block mb-2 text-sm font-light">Nome</label>
+                                <input type="text" id="name" name="name" value={formData.name} required className="w-full px-4 py-3 border border-input bg-background focus:outline-hidden focus:ring-2 focus:ring-primary" placeholder="Cauê da Silva" onChange={(e) => setFormData({ ...formData, name: e.target.value })} />
                             </div>
                             <div>
-                                <label htmlFor="email" className="block mb-2 text-sm font-medium">E-mail</label>
-                                <input type="email" id="email" name="email" value={formData.email} required className="w-full px-4 py-3 rounded-md border border-input bg-background focus:outline-hidden focus:ring-2 focus:ring-primary" placeholder="exemplo@gmail.com" onChange={(e) => setFormData({ ...formData, email: e.target.value })} />
+                                <label htmlFor="email" className="block mb-2 text-sm font-light">E-mail</label>
+                                <input type="email" id="email" name="email" value={formData.email} required className="w-full px-4 py-3 border border-input bg-background focus:outline-hidden focus:ring-2 focus:ring-primary" placeholder="exemplo@gmail.com" onChange={(e) => setFormData({ ...formData, email: e.target.value })} />
                             </div>
                             <div>
-                                <label htmlFor="message" className="block mb-2 text-sm font-medium">Mensagem</label>
-                                <textarea id="message" name="message" value={formData.message} required className="w-full px-4 py-3 rounded-md border border-input bg-background focus:outline-hidden focus:ring-2 focus:ring-primary resize-none" placeholder="Olá..." onChange={(e) => setFormData({ ...formData, message: e.target.value })} />
+                                <label htmlFor="message" className="block mb-2 text-sm font-light">Mensagem</label>
+                                <textarea id="message" name="message" value={formData.message} required className="w-full px-4 py-3 border border-input bg-background focus:outline-hidden focus:ring-2 focus:ring-primary resize-none" placeholder="Olá..." onChange={(e) => setFormData({ ...formData, message: e.target.value })} />
                             </div>
 
                             <button typeof="submit" disabled={isSubmitting} className={cn("button cta-secondary hover:cta-secondary-hover active:cta-secondary-active before:secondary-before hover:before:secondary-hover-before w-full flex items-center justify-center gap-2 cursor-pointer")}>
                                 <p className="mb-1">{isSubmitting ? "Enviando..." : "Envie uma mensagem"}</p>
-                                <Send size={16} />
+                                <Send size={16} strokeWidth={1} />
                             </button>
                             <ToastContainer className="toast-container" />
                         </form>

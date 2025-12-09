@@ -10,7 +10,7 @@
 
   --color-card: hsl(var(--card));
 
-  --shadow-glow: 0 0 10px rgba(139, 92, 246, 0.5);
+  --shadow-glow: hsl(var(--foreground))
 
   --animate-float: float 6s ease-in-out infinite;
   --animate-fade-in: fade-in 0.7s ease-in-out forwards;
@@ -22,6 +22,162 @@
   --animate-trail-parallax-far: trailParallaxFar var(--duration) ease-in-out infinite;
   --animate-blink: blink 1.5s step-start infinite;
   --animate-loading: loading 0.8s ease infinite;
+
+  @keyframes lineVertical {
+    0% {
+      transform: translateX(0);
+    }
+    
+    20% {
+      transform: translateX(50px);
+    }
+
+    40% {
+      transform: translateX(-100px);
+    }
+
+    60% {
+      transform: translateX(200px);
+    }
+
+    80% {
+      transform: translateX(-100px);
+    }
+
+    100% {
+      transform: translateX(0);
+    }
+  }
+
+  @keyframes lineDiag1 {
+    0% {
+      transform: translateY(50px) rotate(0deg);
+    }
+    
+    20% {
+      transform: translateY(-100px) rotate(45deg);
+    }
+
+    40% {
+      transform: translateY(-100px) rotate(-45deg);
+    }
+
+    60% {
+      transform: translateY(160px) rotate(-20deg);
+    }
+
+    80% {
+      transform: translateY(-160px) rotate(20deg);
+    }
+
+    100% {
+      transform: translateY(50px) rotate(0deg);
+    }
+  }
+
+  @keyframes lineDiag2 {
+    0% {
+      transform: translateY(-30px) rotate(0deg);
+    }
+    
+    20% {
+      transform: translateY(80px) rotate(-65deg);
+    }
+
+    40% {
+      transform: translateY(80px) rotate(65deg);
+    }
+
+    60% {
+      transform: translateY(-200px) rotate(-35deg);
+    }
+
+    80% {
+      transform: translateY(200px) rotate(30deg);
+    }
+
+    100% {
+      transform: translateY(-30px) rotate(0deg);
+    }
+  }
+
+  @keyframes lineVerticalMobile {
+    0% {
+      transform: translateX(0);
+    }
+    
+    20% {
+      transform: translateX(30px);
+    }
+
+    40% {
+      transform: translateX(-800px);
+    }
+
+    60% {
+      transform: translateX(160px);
+    }
+
+    80% {
+      transform: translateX(-80px);
+    }
+
+    100% {
+      transform: translateX(0);
+    }
+  }
+
+  @keyframes lineDiag1Mobile {
+    0% {
+      transform: translateY(30px) rotate(0deg);
+    }
+    
+    20% {
+      transform: translateY(-80px) rotate(35deg);
+    }
+
+    40% {
+      transform: translateY(-80px) rotate(-35deg);
+    }
+
+    60% {
+      transform: translateY(160px) rotate(-20deg);
+    }
+
+    80% {
+      transform: translateY(-160px) rotate(20deg);
+    }
+
+    100% {
+      transform: translateY(30px) rotate(0deg);
+    }
+  }
+
+  @keyframes lineDiag2Mobile {
+    0% {
+      transform: translateY(-20px) rotate(0deg);
+    }
+    
+    20% {
+      transform: translateY(80px) rotate(-25deg);
+    }
+
+    40% {
+      transform: translateY(80px) rotate(25deg);
+    }
+
+    60% {
+      transform: translateY(-160px) rotate(20deg);
+    }
+
+    80% {
+      transform: translateY(160px) rotate(-20deg);
+    }
+
+    100% {
+      transform: translateY(-30px) rotate(0deg);
+    }
+  }
 
   @keyframes float {
 
@@ -143,7 +299,7 @@
 
     --card: 0 0% 100%;
 
-    --primary: 220, 10%, 46%;
+    --primary: 0 0% 50%;
     --primary-foreground: 210 40% 98%;
 
     --border: 214 32% 91%;
@@ -151,11 +307,11 @@
 
   .dark {
     --background: 222 47% 4%;
-    --foreground: 240, 5%, 96%;
+    --foreground: 240 5% 96%;
 
-    --card: 222 47% 8%;
+    --card: 216 18% 16%;
 
-    --primary: 220, 10%, 46%;
+    --primary: 0 0% 50%;
     --primary-foreground: 213 31% 91%;
 
     --border: 217 33% 20%;
@@ -173,7 +329,9 @@
 
   body {
     @apply bg-background text-foreground transition-colors duration-300;
-    font-feature-settings: "rlig" 1, "calt" 1;
+    font-family: "Geist", sans-serif;
+    font-optical-sizing: auto;
+    font-weight: 400;
     height: 100%;
     width: 100%;
   }
@@ -185,8 +343,13 @@
   }
 
   @keyframes fadeIn {
-    0% { opacity: 0 }
-    100% { opacity: 1 }
+    0% {
+      opacity: 0
+    }
+
+    100% {
+      opacity: 1
+    }
   }
 }
 
@@ -194,24 +357,72 @@
   margin-inline: auto;
   padding-inline: 2rem;
 
-  @media (width >= 640px) {
+  @media (width >=640px) {
     max-width: 640px;
   }
 
-  @media (width >= 768px) {
+  @media (width >=768px) {
     max-width: 768px;
   }
 
-  @media (width >= 1024px) {
+  @media (width >=1024px) {
     max-width: 1024px;
   }
 
-  @media (width >= 1280px) {
+  @media (width >=1280px) {
     max-width: 1280px;
   }
 
-  @media (width >= 1400px) {
+  @media (width >=1400px) {
     max-width: 1400px;
+  }
+}
+
+@utility line-art-container {
+  width: 20rem;
+  height: 70vh;
+  inset: 0;
+  background: hsl(var(--background));
+  position: relative;
+  border: 1px solid hsl(var(--foreground));
+
+  @media (width <= 768px) {
+    height: 25vh;
+    width: 80vw;
+    margin-bottom: 2rem
+  }
+}
+
+@utility line {
+  width: 200vw;
+  height: 1px;
+  background-color: hsl(var(--foreground));
+}
+
+@utility line-diag1 {
+  animation: lineDiag1 12s cubic-bezier(.22,1.17,.78,.35) infinite;
+
+  @media (width <= 768px) {
+    animation: lineDiag1Mobile 12s cubic-bezier(.22,1.17,.78,.35) infinite;
+  }
+}
+
+@utility line-diag2 {
+  animation: lineDiag2 12s cubic-bezier(.22,1.17,.78,.35) infinite reverse;
+
+  @media (width <= 768px) {
+    animation: lineDiag2Mobile 12s cubic-bezier(.22,1.17,.78,.35) infinite reverse;
+  }
+}
+
+@utility line-vert {
+  width: 1px;
+  height: 200vh;
+  background-color: hsl(var(--foreground));
+  animation: lineVertical 12s cubic-bezier(.22,1.17,.78,.35) infinite;
+
+  @media (width <= 768px) {
+    animation: lineVerticalMobile 12s cubic-bezier(.22,1.17,.78,.35) infinite;
   }
 }
 
@@ -225,25 +436,11 @@
 }
 
 @utility hero-image-container {
-  @apply relative md:h-96;
-  flex: 1;
+  @apply relative;
   max-width: 600px;
-  height: fit-content;
-
-  @media (width <= 980px) {
-    display: none;
-  }
 }
 
-@utility code-display {
-  width: 100%;
-
-  @media (width <= 768px) {
-    display: none;
-  }
-}
-
-@utility code-display-hover {
+@utility hero-display-hover {
   @apply transition-transform duration-300 hover:scale-[1.01] hover:shadow-lg;
 }
 
@@ -252,9 +449,7 @@
   overflow: hidden;
   background: transparent;
   color: hsl(var(--foreground));
-  box-shadow:
-    0 1px 2px rgba(0, 0, 0, 0.08),
-    0 4px 10px rgba(0, 0, 0, 0.06);
+  box-shadow: 1px 1px 5px hsl(var(--foreground) / 0.3);
   border: 1px solid hsl(var(--foreground));
   backdrop-filter: blur(3px);
 }
@@ -262,7 +457,7 @@
 @utility cta-secondary-hover {
   border-color: hsl(var(--background));
   overflow: hidden;
-  background: hsl(var(--primary), 0.1);
+  background: hsl(var(--primary)/ 0.1);
 }
 
 @utility cta-secondary-active {
@@ -279,7 +474,7 @@
   height: 100%;
   pointer-events: none;
   overflow: hidden;
-  border-radius: inherit; 
+  border-radius: inherit;
 
   background: linear-gradient(90deg,
       transparent,
@@ -304,7 +499,8 @@
 }
 
 @utility card-hover {
-  @apply transition-transform duration-300 hover:scale-[1.02] hover:shadow-lg;
+  @apply transition-transform duration-300 hover:scale-[1.01] hover:shadow-lg;
+  box-shadow: 1px 1px 5px hsl(var(--foreground) / 0.3);
 }
 
 @utility gradient-border {
@@ -315,7 +511,7 @@
 }
 
 @utility button {
-  @apply relative overflow-hidden px-4 py-2 text-center justify-center rounded-xl bg-primary text-primary-foreground font-medium transition-colors duration-300;
+  @apply relative overflow-hidden px-4 py-2 text-center justify-center bg-primary text-primary-foreground font-light transition-colors duration-300;
   --btn-shadow: var(--shadow-glow);
 }
 
