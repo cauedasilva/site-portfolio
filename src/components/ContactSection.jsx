@@ -116,7 +116,7 @@ export const ContactSection = () => {
                             </div>
 
                             <button typeof="submit" disabled={isSubmitting} className={cn("button cta-secondary hover:cta-secondary-hover active:cta-secondary-active before:secondary-before hover:before:secondary-hover-before w-full flex items-center justify-center gap-2 cursor-pointer")}>
-                                <p className="mb-1">{isSubmitting ? "Enviando..." : "Envie uma mensagem"}</p>
+                                <p className="mb-1">{isSubmitting ? "Enviando..." : "Enviar"}</p>
                                 <Send size={16} strokeWidth={1} />
                             </button>
                             <ToastContainer className="toast-container" />
