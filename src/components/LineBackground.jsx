@@ -15,7 +15,7 @@ export const LineBackground = () => {
     }, []);
 
     const generateTrail = () => {
-        const numberOfTrails = 8;
+        const numberOfTrails = 6;
         const newTrails = []
 
         for (let i = 0; i < numberOfTrails; i++) {
