@@ -5,10 +5,8 @@ export const HeroSection = () => {
     return (
         <section id="hero" className="relative min-h-screen flex items-center justify-center px-4">
             <div className="container max-w-6xl mt-6 text-center z-10 flex flex-col md:flex-row items-center justify-center gap-8 mb-14">
-                <div className="hero-image-container">
-                    <div className="hero-display-hover shadow-lg">
-                        <LineArt />
-                    </div>
+                <div>
+                    <LineArt />
                 </div>
 
                 <div className="space-y-6">

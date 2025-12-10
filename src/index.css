@@ -37,11 +37,11 @@
     }
 
     60% {
-      transform: translateX(200px);
+      transform: translateX(130px);
     }
 
     80% {
-      transform: translateX(-100px);
+      transform: translateX(20px);
     }
 
     100% {
@@ -379,7 +379,7 @@
 }
 
 @utility line-art-container {
-  width: 20rem;
+  width: 35vh;
   height: 70vh;
   inset: 0;
   background: hsl(var(--background));
@@ -387,7 +387,7 @@
   border: 1px solid hsl(var(--foreground));
 
   @media (width <= 768px) {
-    height: 25vh;
+    height: 20vh;
     width: 80vw;
     margin-bottom: 2rem
   }
@@ -433,15 +433,6 @@
 
 @utility toast-container {
   margin-inline: auto;
-}
-
-@utility hero-image-container {
-  @apply relative;
-  max-width: 600px;
-}
-
-@utility hero-display-hover {
-  @apply transition-transform duration-300 hover:scale-[1.01] hover:shadow-lg;
 }
 
 @utility cta-secondary {
