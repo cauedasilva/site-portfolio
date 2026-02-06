@@ -40,38 +40,71 @@ const projects = [
     {
         id: 2,
         title: "tracker-assinatura",
-        description: "API RESTful em Node.js com Express e MongoDB, tem como função o controle de assinaturas.",
-        image: `${import.meta.env.BASE_URL}projects/assinatura-tracker.png`,
-        tags: ["JavaScript", "Node", "Express", "MongoDB", "Mongoose", "HTML", "CSS", "JWT", "bcrypt", "Arcjet", "QStash"],
+        description: "API RESTful desenvolvida em Node.js com Express e MongoDB, front-end em Angular, cujo objetivo é o controle de assinaturas recorrentes.",
+        image: `${import.meta.env.BASE_URL}projects/tracker-assinatura.png`,
+        tags: ["JavaScript", "TypeScript", "Node", "Express", "MongoDB", "Angular", "Mongoose", "HTML", "CSS", "JWT", "bcrypt", "Arcjet", "QStash"],
         githubUrl: "https://github.com/cauedasilva/tracker-assinatura",
-        code: `export const createSubscription = async (req, res, next) => {
+        demoUrl: "https://tracker-assinatura-client.vercel.app/",
+        code: `const authorize = async (req, res, next) => {
     try {
-        const subscription = await Subscription.create({
-            ...req.body,
-            user: req.user._id,
-        });
+        let token;
 
-        try {
-            await workflowClient.trigger({
-                url: "{SERVER_URL}/api/v1/workflows/subscription/reminder",
-                body: {
-                    subscriptionID: subscription._id
-                },
-                header: {
-                    'content-type': 'application/json'
-                },
-                retries: 0
-            });
-        } catch (workflowError) {
-            console.warn('Workflow trigger failed:', workflowError.message);
+        if (req.headers.authorization && req.headers.authorization.startsWith('Bearer ')) {
+            token = req.headers.authorization.split(' ')[1];
         }
 
-        res.status(201).json({ success: true, data: subscription });
+        if (!token) {
+            return res.status(401).json({
+                success: false,
+                message: "No token provided"
+            });
+        }
+
+        let decoded;
+        try {
+            decoded = jwt.verify(token, JWT_SECRET);
+        } catch (error) {
+            if (error.name === "TokenExpiredError") {
+                return res.status(401).json({
+                    success: false,
+                    message: "Token expired"
+                });
+            }
+
+            if (error.name === "JsonWebTokenError") {
+                return res.status(401).json({
+                    success: false,
+                    message: "Invalid token"
+                });
+            }
+
+            return res.status(401).json({
+                success: false,
+                message: "Authentication failed"
+            });
+        }
+
+        const user = await User.findById(decoded.userId);
+        if (!user) {
+            return res.status(401).json({
+                success: false,
+                message: "User not found"
+            });
+        }
+
+        req.user = user;
+        next();
+
     } catch (error) {
-        next(error);
+        return res.status(500).json({
+            success: false,
+            message: "Authorization middleware error",
+            error: error.message,
+        });
     }
 };
-`
+
+export default authorize;`
     },
     {
         id: 3,
@@ -80,6 +113,7 @@ const projects = [
         image: `${import.meta.env.BASE_URL}projects/ascii-site.png`,
         tags: ["JavaScript", "HTML", "CSS", "Canvas API"],
         githubUrl: "https://github.com/cauedasilva/ascii-image-converter",
+        demoUrl: "https://cauedasilva.github.io/ascii-image-converter/",
         code: `function convertImageDataToASCII(imageData) {
     const data = imageData.data;
     const imgW = imageData.width;
@@ -120,7 +154,7 @@ export const ProjectsSection = () => {
                             <div key={project.id} className="relative">
                                 <div className="group bg-card rounded-none overflow-hidden shadow-xs card-hover relative z-10">
                                     <div className="h-1/3 overflow-hidden">
-                                        <img src={project.image} alt={project.title} className="w-full h-full object-cover" />
+                                        <img src={project.image} alt={project.title} className="w-full h-full max-h-52 object-cover" />
                                     </div>
                                     <div className="p-6">
                                         <div className="flex flex-wrap gap-2 mb-4">
@@ -143,6 +177,14 @@ export const ProjectsSection = () => {
                                                     Trecho de código
                                                 </button>
                                             </div>
+                                            {project.demoUrl && (
+                                                <div>
+                                                    <button
+                                                        className="button cursor-pointer text-center cta-secondary hover:cta-secondary-hover active:cta-secondary-active before:secondary-before hover:before:secondary-hover-before">
+                                                        <a href={project.demoUrl} target="_blank">Demonstração ao vivo</a>
+                                                    </button>
+                                                </div>
+                                            )}
                                         </div>
                                     </div>
                                 </div>
