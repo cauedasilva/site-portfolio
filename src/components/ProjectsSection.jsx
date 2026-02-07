@@ -149,9 +149,9 @@ export const ProjectsSection = () => {
                 <div className="container mx-auto max-w-5xl">
                     <h2 className="text-3xl md:text-4xl font-light mb-4 text-center"> Meus projetos</h2>
                     <p className="text-center text-muted-foreground mb-12 max-w-2xl mx-auto">Projetos desenvolvidos tanto no meu tempo livre quanto ao longo do curso de Ciência da Computação na FURB.</p>
-                    <div className="grid grid-cols-1 md:grid-cols-2 lg-grid-cols-3 gap-8">
+                    <div className="columns-1 md:columns-2 gap-8">
                         {projects.map((project) => (
-                            <div key={project.id} className="relative">
+                            <div key={project.id} className="mb-8 break-inside-avoid relative">
                                 <div className="group bg-card rounded-none overflow-hidden shadow-xs card-hover relative z-10">
                                     <div className="h-1/3 overflow-hidden">
                                         <img src={project.image} alt={project.title} className="w-full h-full max-h-52 object-cover" />
@@ -166,16 +166,18 @@ export const ProjectsSection = () => {
                                         <h3 className="text-xl font-light mb-1">{project.title}</h3>
                                         <p className="text-muted-foreground text-sm mb-4">{project.description}</p>
                                         <div className="flex justify-between items-center">
-                                            <div className="flex space-x-3">
-                                                <a href={project.githubUrl} size={20} target="_blank" className="text-foreground/80 hover:text-primary transition-colors duration-300"><Github strokeWidth={1} /></a>
-                                            </div>
-                                            <div>
-                                                <button
-                                                    onClick={() => setIsPanelOpen(isPanelOpen === project.id ? null : project.id)}
-                                                    aria-label={isPanelOpen ? "Fechar aba" : "Abrir aba"}
-                                                    className="button cursor-pointer text-center cta-secondary hover:cta-secondary-hover active:cta-secondary-active before:secondary-before hover:before:secondary-hover-before">
-                                                    Trecho de código
-                                                </button>
+                                            <div className="space-x-3 flex items-center justify-center">
+                                                <div>
+                                                    <a href={project.githubUrl} size={20} target="_blank" className="text-foreground/80 hover:text-primary transition-colors duration-300"><Github strokeWidth={1} /></a>
+                                                </div>
+                                                <div>
+                                                    <button
+                                                        onClick={() => setIsPanelOpen(isPanelOpen === project.id ? null : project.id)}
+                                                        aria-label={isPanelOpen ? "Fechar aba" : "Abrir aba"}
+                                                        className="button cursor-pointer text-center cta-secondary hover:cta-secondary-hover active:cta-secondary-active before:secondary-before hover:before:secondary-hover-before">
+                                                        &#60;&#47;&#62;
+                                                    </button>
+                                                </div>
                                             </div>
                                             {project.demoUrl && (
                                                 <div>
