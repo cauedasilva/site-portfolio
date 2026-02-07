@@ -15,7 +15,7 @@ export const NavBar = () => {
   const [isMenuOpen, setIsMenuOpen] = useState(false);
   const [animateClass, setAnimateClass] = useState("animate-blink");
   const [text, setText] = useState("");
-  const fullText = "<Cauê /> portfólio";
+  const fullText = "<Cauê/> portfólio";
 
   useEffect(() => {
     let index = 0;
