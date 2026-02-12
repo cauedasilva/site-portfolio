@@ -183,7 +183,7 @@ export const ProjectsSection = () => {
                                                 <div>
                                                     <button
                                                         className="button cursor-pointer text-center cta-secondary hover:cta-secondary-hover active:cta-secondary-active before:secondary-before hover:before:secondary-hover-before">
-                                                        <a href={project.demoUrl} target="_blank">Demonstração ao vivo</a>
+                                                        <a href={project.demoUrl} target="_blank">Demonstração</a>
                                                     </button>
                                                 </div>
                                             )}
